@@ -105,7 +105,9 @@ class SystemEngine : BrowserEngine {
         webView?.reload()
     }
 
-    override fun findInPage(query: String) = webView?.findAll(query) ?: Unit
+    override fun findInPage(query: String) {
+        webView?.findAll(query)
+    }
 
     override fun onResume() = webView?.resumeTimers() ?: Unit
     override fun onPause() = webView?.pauseTimers() ?: Unit

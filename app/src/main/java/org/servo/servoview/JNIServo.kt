@@ -71,6 +71,7 @@ internal class JNIServo {
             } catch (_: UnsatisfiedLinkError) {
                 false
             }
+            return loaded
         }
     }
 }

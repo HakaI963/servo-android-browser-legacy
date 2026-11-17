@@ -55,7 +55,7 @@ import com.servodroid.browser.ui.theme.AppTypography
 import com.servodroid.browser.ui.theme.Dimensions
 import com.servodroid.browser.ui.theme.Ink
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.Rounded
+import androidx.compose.material.icons.rounded.*
 
 @Composable
 fun ScreenHeader(title: String, onBack: () -> Unit, actions: @Composable () -> Unit = {}) {
@@ -64,7 +64,7 @@ fun ScreenHeader(title: String, onBack: () -> Unit, actions: @Composable () -> U
             modifier = Modifier.fillMaxWidth().height(Dimensions.ToolbarHeight).padding(horizontal = Dimensions.SpaceSm),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            ChromeIconButton(icon = Rounded.ArrowBack, label = "Back", onClick = onBack)
+            ChromeIconButton(icon = Icons.Rounded.ArrowBack, label = "Back", onClick = onBack)
             Spacer(Modifier.width(Dimensions.SpaceMd))
             Text(text = title, style = AppTypography.Headline, color = MaterialTheme.colorScheme.onSurface, modifier = Modifier.weight(1f))
             actions()
@@ -88,7 +88,7 @@ fun TabsScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
             TextButton(onClick = { vm.closeAllTabs() }) {
                 Text("Close all", style = AppTypography.Label, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
-            ChromeIconButton(icon = Rounded.Check, label = "Done", tint = MaterialTheme.colorScheme.primary) {
+            ChromeIconButton(icon = Icons.Rounded.Check, label = "Done", tint = MaterialTheme.colorScheme.primary) {
                 vm.openScreen(Screen.Browser)
             }
         }
@@ -114,7 +114,7 @@ fun TabsScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
                 if (private.isNotEmpty()) {
                     item(span = { GridItemSpan(2) }) {
                         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = Dimensions.SpaceMd, bottom = Dimensions.SpaceXs)) {
-                            Icon(Rounded.VisibilityOff, contentDescription = null, tint = Ink.PrivateAccent, modifier = Modifier.size(14.dp))
+                            Icon(Icons.Rounded.VisibilityOff, contentDescription = null, tint = Ink.PrivateAccent, modifier = Modifier.size(14.dp))
                             Spacer(Modifier.width(Dimensions.SpaceSm))
                             Text("Private", style = AppTypography.Label, color = Ink.PrivateAccent)
                         }
@@ -131,7 +131,7 @@ fun TabsScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary,
             ) {
-                Icon(Rounded.Add, contentDescription = "New tab")
+                Icon(Icons.Rounded.Add, contentDescription = "New tab")
             }
         }
     }
@@ -164,7 +164,7 @@ private fun TabCard(vm: BrowserViewModel, tab: com.servodroid.browser.model.Tab,
                     overflow = TextOverflow.Ellipsis,
                 )
                 Icon(
-                    Rounded.Close,
+                    Icons.Rounded.Close,
                     contentDescription = "Close tab",
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(16.dp).clickable { vm.closeTab(tab.id) },
@@ -200,7 +200,7 @@ fun HistoryScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
             },
         )
         if (state.history.isEmpty()) {
-            EmptyState(icon = Rounded.History, title = "No history yet", caption = "Pages you visit will show up here")
+            EmptyState(icon = Icons.Rounded.History, title = "No history yet", caption = "Pages you visit will show up here")
         } else {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 item {
@@ -246,7 +246,7 @@ fun BookmarksScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
             },
         )
         if (state.bookmarks.isEmpty()) {
-            EmptyState(icon = Rounded.BookmarkBorder, title = "No bookmarks yet", caption = "Save pages you want to return to")
+            EmptyState(icon = Icons.Rounded.BookmarkBorder, title = "No bookmarks yet", caption = "Save pages you want to return to")
         } else {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.bookmarks, key = { it.url }) { bookmark ->
@@ -283,7 +283,7 @@ private fun HistoryRow(title: String, subtitle: String, onClick: () -> Unit, onD
             Text(text = title, style = AppTypography.Body, color = MaterialTheme.colorScheme.onSurface, maxLines = 1, overflow = TextOverflow.Ellipsis)
             Text(text = subtitle, style = AppTypography.Caption, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
         }
-        ChromeIconButton(icon = Rounded.Close, label = "Remove", tint = MaterialTheme.colorScheme.onSurfaceVariant, onClick = onDelete)
+        ChromeIconButton(icon = Icons.Rounded.Close, label = "Remove", tint = MaterialTheme.colorScheme.onSurfaceVariant, onClick = onDelete)
     }
 }
 
@@ -291,7 +291,7 @@ private fun HistoryRow(title: String, subtitle: String, onClick: () -> Unit, onD
 fun DownloadsScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxSize()) {
         ScreenHeader(title = "Downloads", onBack = { vm.openScreen(Screen.Browser) })
-        EmptyState(icon = Rounded.Download, title = "No downloads yet", caption = "Files you download will show up here")
+        EmptyState(icon = Icons.Rounded.Download, title = "No downloads yet", caption = "Files you download will show up here")
     }
 }
 
@@ -376,7 +376,7 @@ fun SettingsScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
                 }
             }
             item { SettingSection("About") }
-            item { SettingsRow(title = "About Servo Browser", icon = Rounded.Info) { vm.openScreen(Screen.About) } }
+            item { SettingsRow(title = "About Servo Browser", icon = Icons.Rounded.Info) { vm.openScreen(Screen.About) } }
             item { Spacer(Modifier.height(Dimensions.SpaceXxl)) }
         }
     }
@@ -419,7 +419,7 @@ private fun SelectableRow(title: String, selected: Boolean, onClick: () -> Unit)
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(title, style = AppTypography.Body, color = MaterialTheme.colorScheme.onSurface, modifier = Modifier.weight(1f))
-        if (selected) Icon(Rounded.Check, contentDescription = "Selected", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+        if (selected) Icon(Icons.Rounded.Check, contentDescription = "Selected", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
     }
 }
 
@@ -434,7 +434,7 @@ private fun SettingsRow(title: String, icon: ImageVector? = null, tint: Color = 
             Spacer(Modifier.width(Dimensions.SpaceMd))
         }
         Text(title, style = AppTypography.Body, color = tint, modifier = Modifier.weight(1f))
-        Icon(Rounded.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
+        Icon(Icons.Rounded.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
     }
 }
 
@@ -452,7 +452,7 @@ fun AboutScreen(vm: BrowserViewModel, modifier: Modifier = Modifier) {
                     .border(1.dp, Ink.Accent.copy(alpha = 0.5f), CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(Rounded.Settings, contentDescription = "Servo", tint = Ink.Accent, modifier = Modifier.size(36.dp))
+                Icon(Icons.Rounded.Settings, contentDescription = "Servo", tint = Ink.Accent, modifier = Modifier.size(36.dp))
             }
             Spacer(Modifier.height(Dimensions.SpaceLg))
             Text("Servo Browser", style = AppTypography.Headline, color = MaterialTheme.colorScheme.onSurface)
@@ -483,21 +483,21 @@ fun BrowserMenu(vm: BrowserViewModel, onShare: () -> Unit) {
         shape = RoundedCornerShape(topStart = Dimensions.RadiusSheet, topEnd = Dimensions.RadiusSheet),
     ) {
         Column(modifier = Modifier.padding(bottom = Dimensions.SpaceXl)) {
-            MenuItem(Rounded.Add, "New tab") { vm.newTab(); vm.closeMenu() }
-            MenuItem(Rounded.VisibilityOff, "New private tab") { vm.newTab(private = true); vm.closeMenu() }
-            MenuItem(Rounded.History, "History") { vm.openScreen(Screen.History) }
-            MenuItem(Rounded.BookmarkBorder, "Bookmarks") { vm.openScreen(Screen.Bookmarks) }
-            MenuItem(Rounded.Download, "Downloads") { vm.openScreen(Screen.Downloads) }
+            MenuItem(Icons.Rounded.Add, "New tab") { vm.newTab(); vm.closeMenu() }
+            MenuItem(Icons.Rounded.VisibilityOff, "New private tab") { vm.newTab(private = true); vm.closeMenu() }
+            MenuItem(Icons.Rounded.History, "History") { vm.openScreen(Screen.History) }
+            MenuItem(Icons.Rounded.BookmarkBorder, "Bookmarks") { vm.openScreen(Screen.Bookmarks) }
+            MenuItem(Icons.Rounded.Download, "Downloads") { vm.openScreen(Screen.Downloads) }
             Hairline()
-            MenuItem(Rounded.Search, "Find in page") { vm.toggleFind(true) }
+            MenuItem(Icons.Rounded.Search, "Find in page") { vm.toggleFind(true) }
             MenuItem(
-                if (vm.uiState.desktopSite) Rounded.Check else Rounded.DesktopWindows,
+                if (vm.uiState.desktopSite) Icons.Rounded.Check else Icons.Rounded.DesktopWindows,
                 if (vm.uiState.desktopSite) "Desktop site on" else "Desktop site",
             ) { vm.toggleDesktopSite() }
-            MenuItem(Rounded.Share, "Share") { onShare(); vm.closeMenu() }
+            MenuItem(Icons.Rounded.Share, "Share") { onShare(); vm.closeMenu() }
             Hairline()
-            MenuItem(Rounded.Settings, "Settings") { vm.openScreen(Screen.Settings) }
-            MenuItem(Rounded.Info, "About Servo Browser") { vm.openScreen(Screen.About) }
+            MenuItem(Icons.Rounded.Settings, "Settings") { vm.openScreen(Screen.Settings) }
+            MenuItem(Icons.Rounded.Info, "About Servo Browser") { vm.openScreen(Screen.About) }
         }
     }
 }

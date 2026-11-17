@@ -42,29 +42,29 @@ class BrowserRepository(context: Context) {
         if (url.startsWith("about:", ignoreCase = true)) return
         val entry = HistoryEntry(url, title, System.currentTimeMillis())
         history = listOf(entry) + history.filterNot { it.url == url }
-        prefs.putList(KEY_HISTORY, history.map { "${it.url}$SEP${it.title}$SEP${it.timestamp}" })
+        prefs.edit().putList(KEY_HISTORY, history.map { "${it.url}$SEP${it.title}$SEP${it.timestamp}" })
     }
 
     fun removeHistory(url: String) {
         history = history.filterNot { it.url == url }
-        prefs.putList(KEY_HISTORY, history.map { "${it.url}$SEP${it.title}$SEP${it.timestamp}" })
+        prefs.edit().putList(KEY_HISTORY, history.map { "${it.url}$SEP${it.title}$SEP${it.timestamp}" })
     }
 
     fun clearHistory() {
         history = emptyList()
-        prefs.putList(KEY_HISTORY, emptyList())
+        prefs.edit().putList(KEY_HISTORY, emptyList())
     }
 
     fun addBookmark(url: String, title: String) {
         if (bookmarks.any { it.url == url }) return
         val bookmark = Bookmark(url, title)
         bookmarks = listOf(bookmark) + bookmarks
-        prefs.putList(KEY_BOOKMARKS, bookmarks.map { "${it.url}$SEP${it.title}" })
+        prefs.edit().putList(KEY_BOOKMARKS, bookmarks.map { "${it.url}$SEP${it.title}" })
     }
 
     fun removeBookmark(url: String) {
         bookmarks = bookmarks.filterNot { it.url == url }
-        prefs.putList(KEY_BOOKMARKS, bookmarks.map { "${it.url}$SEP${it.title}" })
+        prefs.edit().putList(KEY_BOOKMARKS, bookmarks.map { "${it.url}$SEP${it.title}" })
     }
 
     fun isBookmarked(url: String): Boolean = bookmarks.any { it.url == url }
@@ -72,7 +72,7 @@ class BrowserRepository(context: Context) {
     fun clearAll() {
         clearHistory()
         bookmarks = emptyList()
-        prefs.putList(KEY_BOOKMARKS, emptyList())
+        prefs.edit().putList(KEY_BOOKMARKS, emptyList())
     }
 
     private fun SharedPreferences.getList(key: String): List<String> =

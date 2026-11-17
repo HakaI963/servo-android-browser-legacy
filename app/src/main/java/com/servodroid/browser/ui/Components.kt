@@ -3,6 +3,8 @@ package com.servodroid.browser.ui
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -94,7 +96,7 @@ fun Hairline(modifier: Modifier = Modifier) {
 @Composable
 fun TopToolbar(vm: BrowserViewModel, modifier: Modifier = Modifier) {
     val state = vm.uiState
-    val private = state.activeTab?.isPrivate == true
+    val private = vm.activeTab?.isPrivate == true
     val barColor = if (private) Ink.PrivateSurface else MaterialTheme.colorScheme.surface
     val accent = if (private) Ink.PrivateAccent else Ink.Accent
 
@@ -112,7 +114,7 @@ fun TopToolbar(vm: BrowserViewModel, modifier: Modifier = Modifier) {
             AddressBar(vm = vm, accent = accent, modifier = Modifier.weight(1f))
             Spacer(Modifier.width(Dimensions.SpaceSm))
             ChromeIconButton(
-                icon = androidx.compose.material.icons.Icons.Rounded.MoreVert,
+                icon = Icons.Rounded.MoreVert,
                 label = "Menu",
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 onClick = { vm.toggleMenu() },
@@ -174,8 +176,8 @@ private fun DisplayAddressBar(vm: BrowserViewModel, modifier: Modifier = Modifie
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = if (isSecure) androidx.compose.material.icons.Icons.Rounded.Lock
-                else androidx.compose.material.icons.Icons.Rounded.Public,
+                imageVector = if (isSecure) Icons.Rounded.Lock
+                else Icons.Rounded.Public,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(14.dp),
@@ -201,7 +203,7 @@ private fun DisplayAddressBar(vm: BrowserViewModel, modifier: Modifier = Modifie
                 )
             } else {
                 Icon(
-                    imageVector = androidx.compose.material.icons.Icons.Rounded.Refresh,
+                    imageVector = Icons.Rounded.Refresh,
                     contentDescription = "Reload",
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier
@@ -231,7 +233,7 @@ private fun EditingAddressBar(vm: BrowserViewModel, accent: Color, modifier: Mod
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = androidx.compose.material.icons.Icons.Rounded.Search,
+                imageVector = Icons.Rounded.Search,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(16.dp),
@@ -264,7 +266,7 @@ private fun EditingAddressBar(vm: BrowserViewModel, accent: Color, modifier: Mod
             )
             if (vm.uiState.addressText.isNotEmpty()) {
                 Icon(
-                    imageVector = androidx.compose.material.icons.Icons.Rounded.Close,
+                    imageVector = Icons.Rounded.Close,
                     contentDescription = "Clear",
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier
@@ -298,7 +300,7 @@ fun ProgressLine(progress: Int, color: Color, modifier: Modifier = Modifier) {
 @Composable
 fun BottomToolbar(vm: BrowserViewModel, modifier: Modifier = Modifier) {
     val state = vm.uiState
-    val private = state.activeTab?.isPrivate == true
+    val private = vm.activeTab?.isPrivate == true
     val tint = if (private) Ink.PrivateAccent else MaterialTheme.colorScheme.onSurfaceVariant
     val enabledTint = if (private) tint else MaterialTheme.colorScheme.onSurface
 
@@ -314,34 +316,34 @@ fun BottomToolbar(vm: BrowserViewModel, modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 ChromeIconButton(
-                    icon = androidx.compose.material.icons.Icons.Rounded.ArrowBack,
+                    icon = Icons.Rounded.ArrowBack,
                     label = "Back",
                     enabled = state.canGoBack,
                     tint = enabledTint,
                     onClick = { vm.goBack() },
                 )
                 ChromeIconButton(
-                    icon = androidx.compose.material.icons.Icons.Rounded.ArrowForward,
+                    icon = Icons.Rounded.ArrowForward,
                     label = "Forward",
                     enabled = state.canGoForward,
                     tint = enabledTint,
                     onClick = { vm.goForward() },
                 )
                 ChromeIconButton(
-                    icon = androidx.compose.material.icons.Icons.Rounded.Home,
+                    icon = Icons.Rounded.Home,
                     label = "Home",
                     tint = tint,
                     onClick = { vm.navigate("https://servo.org/") },
                 )
                 ChromeIconButton(
-                    icon = if (state.isBookmarked) androidx.compose.material.icons.Icons.Rounded.Bookmark
-                    else androidx.compose.material.icons.Icons.Rounded.BookmarkBorder,
+                    icon = if (state.isBookmarked) Icons.Rounded.Bookmark
+                    else Icons.Rounded.BookmarkBorder,
                     label = if (state.isBookmarked) "Remove bookmark" else "Bookmark",
                     tint = if (state.isBookmarked) (if (private) tint else Ink.Accent) else tint,
                     onClick = { vm.toggleBookmark() },
                 )
                 ChromeIconButton(
-                    icon = androidx.compose.material.icons.Icons.Rounded.Share,
+                    icon = Icons.Rounded.Share,
                     label = "Share",
                     tint = tint,
                     onClick = { /* handled by BrowserApp via share intent hook */ vm.toggleMenu() },
@@ -359,7 +361,7 @@ fun FindBar(vm: BrowserViewModel, modifier: Modifier = Modifier) {
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(horizontal = Dimensions.SpaceMd)) {
             Icon(
-                androidx.compose.material.icons.Icons.Rounded.Search,
+                Icons.Rounded.Search,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(18.dp),
@@ -380,7 +382,7 @@ fun FindBar(vm: BrowserViewModel, modifier: Modifier = Modifier) {
                 },
             )
             ChromeIconButton(
-                icon = androidx.compose.material.icons.Icons.Rounded.Close,
+                icon = Icons.Rounded.Close,
                 label = "Close find",
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 onClick = { vm.toggleFind(false) },
@@ -397,7 +399,7 @@ private fun prettyUrl(url: String): String {
 @Composable
 fun NewTabPage(vm: BrowserViewModel, modifier: Modifier = Modifier) {
     val state = vm.uiState
-    val private = state.activeTab?.isPrivate == true
+    val private = vm.activeTab?.isPrivate == true
     val accent = if (private) Ink.PrivateAccent else Ink.Accent
 
     Column(
@@ -435,7 +437,7 @@ fun NewTabPage(vm: BrowserViewModel, modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(horizontal = Dimensions.SpaceLg),
             ) {
                 Icon(
-                    androidx.compose.material.icons.Icons.Rounded.Search,
+                    Icons.Rounded.Search,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(20.dp),
@@ -536,13 +538,13 @@ fun SuggestionsCard(vm: BrowserViewModel, modifier: Modifier = Modifier) {
     ) {
         Column {
             SuggestionRow(
-                icon = androidx.compose.material.icons.Icons.Rounded.Search,
+                icon = Icons.Rounded.Search,
                 title = "Search for \"$query\"",
                 subtitle = "with ${vm.uiState.searchEngine.name}",
             ) { vm.navigate(query) }
             matches.forEach { entry ->
                 SuggestionRow(
-                    icon = androidx.compose.material.icons.Icons.Rounded.History,
+                    icon = Icons.Rounded.History,
                     title = entry.title.ifBlank { displayHost(entry.url) },
                     subtitle = displayHost(entry.url),
                 ) { vm.navigate(entry.url) }

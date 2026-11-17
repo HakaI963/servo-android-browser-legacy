@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cool graphite "ink" ramp. The chrome stays neutral; web content carries the color. -->
+    <color name="ink_950">#0B0E11</color>
+    <color name="ink_900">#141A1F</color>
+    <color name="ink_850">#1C242B</color>
+    <color name="ink_800">#232C33</color>
+
+    <color name="text_primary">#E6EDF3</color>
+    <color name="text_secondary">#98A4AF</color>
+    <color name="text_muted">#64707B</color>
+
+    <!-- One restrained jade accent, used for focus, selection, progress and primary actions. -->
+    <color name="accent">#5FC79A</color>
+    <color name="accent_dim">#2E5A47</color>
+    <color name="on_accent">#06120C</color>
+
+    <color name="danger">#D9736A</color>
+    <color name="private_accent">#A78BD2</color>
+</resources>

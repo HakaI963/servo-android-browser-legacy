@@ -1,0 +1,17 @@
+Servo Browser for Android
+Copyright 2026 Servo Browser contributors
+
+This product includes software developed by the Servo Project contributors:
+  Servo browser engine - https://github.com/servo/servo
+  Licensed under the Mozilla Public License 2.0 (see LICENSE).
+
+The visual design direction was developed using the "unslop" skill:
+  unslop by Damir Sokolovsky - https://github.com/heydamir/unslop
+  Licensed under Creative Commons Attribution 4.0 International.
+
+Design system and styling guidance:
+  ui-ux-pro-max and ui-styling skills.
+
+Bundled fonts (res/font):
+  IBM Plex Sans - Copyright IBM Corp., SIL Open Font License 1.1
+  JetBrains Mono - Copyright JetBrains s.r.o., SIL Open Font License 1.1

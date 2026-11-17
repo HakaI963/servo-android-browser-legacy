@@ -1,0 +1,17 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Engine binaries are downloaded/built by CI, not committed.
+app/src/main/jniLibs/*/*.so
+app/src/main/jniLibs/*/*.aar
+
+# Servo source tree (cloned by CI for engine builds).
+/servo/

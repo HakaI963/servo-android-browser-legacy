@@ -111,9 +111,9 @@ jobs:
           RUST_BACKTRACE: 1
         run: |
           cd servo
-          ./mach build --android --target aarch64-linux-android --profile checked-release
+          ./mach build --locked --target aarch64-linux-android --profile checked-release --no-package
           mkdir -p ../app/src/main/jniLibs/arm64-v8a
-          SO=$(find target/aarch64-linux-android -name libservoshell.so -type f | head -n1)
+          SO=$(find target -name libservoshell.so -type f | head -n1)
           if [[ -z "$SO" ]]; then
             echo "::error::libservoshell.so was not produced by the Servo build"
             exit 1

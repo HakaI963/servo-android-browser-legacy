@@ -104,7 +104,7 @@ To build the engine from source locally (the slow path):
 git clone --recurse-submodules https://github.com/servo/servo.git servo
 cd servo && ./mach bootstrap --yes --skip-lints --skip-nextest
 export ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/29.x
-./mach build --android --target aarch64-linux-android --profile checked-release
+./mach build --locked --target aarch64-linux-android --profile checked-release --no-package
 mkdir -p ../app/src/main/jniLibs/arm64-v8a
 cp target/aarch64-linux-android/checked-release/libservoshell.so ../app/src/main/jniLibs/arm64-v8a/
 ```

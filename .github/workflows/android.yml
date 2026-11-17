@@ -38,6 +38,13 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 240
     steps:
+      - name: Free disk space for the engine build
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: false
+          swap-storage: false
+
       - name: Checkout browser app
         uses: actions/checkout@v4
 
@@ -72,6 +79,24 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: aarch64-linux-android
+
+      - name: Install LLVM and Clang
+        if: needs.config.outputs.build_engine == 'true'
+        uses: KyleMayes/install-llvm-action@v2
+        with:
+          version: "20.1"
+
+      - name: Set up Python
+        if: needs.config.outputs.build_engine == 'true'
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: servo/.python-version
+
+      - name: Install uv
+        if: needs.config.outputs.build_engine == 'true'
+        uses: astral-sh/setup-uv@v8.1.0
+        with:
+          version: "0.11.16"
 
       - name: Bootstrap Servo build dependencies
         if: needs.config.outputs.build_engine == 'true'

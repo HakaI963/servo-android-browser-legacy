@@ -6,7 +6,7 @@
     <string name="new_tab">New tab</string>
     <string name="new_private_tab">New private tab</string>
     <string name="tabs">Tabs</string>
-    <string name="private">Private</string>
+    <string name="private_label">Private</string>
     <string name="close_tab">Close tab</string>
     <string name="reload">Reload</string>
     <string name="stop">Stop</string>
